@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+input,
+select {
+  @apply focus:outline-none;
+}
+
+option {
+  @apply text-black;
+  @apply dark:text-white;
+}
+
+.input-base {
+  @apply p-3 rounded-sm border border-gray-400 focus:border-orange-500  transition;
+  @apply dark:border-zinc-600 dark:focus:border-purple-400 dark:bg-zinc-800 dark:placeholder-gray-500;
+}
+
+.button-base {
+  @apply bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md cursor-pointer;
+  @apply dark:bg-purple-600 dark:hover:bg-purple-700;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
