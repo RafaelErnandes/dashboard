@@ -3,7 +3,7 @@
 
 input,
 select {
-  @apply focus:outline-none;
+  @apply focus:outline-none w-full;
 }
 
 option {
@@ -12,11 +12,12 @@ option {
 }
 
 .input-base {
-  @apply p-3 rounded-sm border border-gray-400 focus:border-orange-500  transition;
+  @apply p-2 rounded-sm border border-gray-400 focus:border-orange-500  transition;
   @apply dark:border-zinc-600 dark:focus:border-purple-400 dark:bg-zinc-800 dark:placeholder-gray-500;
 }
 
 .button-base {
+  @apply w-full;
   @apply bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md cursor-pointer;
   @apply dark:bg-purple-600 dark:hover:bg-purple-700;
 }

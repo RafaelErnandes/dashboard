@@ -1,4 +1,4 @@
-import { Form } from "./components/form/index.tsx";
+import { Form } from "./pages/form/index.tsx";
 
 function App() {
   return (

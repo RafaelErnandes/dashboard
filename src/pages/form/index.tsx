@@ -1,0 +1,133 @@
+import "react-datepicker/dist/react-datepicker.css";
+
+import { useEffect, useState } from "react";
+
+import { Button } from "../../components/button/index.tsx";
+import { Calendar } from "../../components/calendar/index.tsx";
+import { FormCategories } from "../../components/form-categories/index.tsx";
+import { FormData } from "./index.ts";
+import { FormType } from "../../components/form-types/index.tsx";
+import { Input } from "../../components/input/index.tsx";
+import { Label } from "../../components/label/index.tsx";
+import React from "react";
+import { ToggleTheme } from "../../components/toggle-theme/index.tsx";
+import formImage from "../../images/formSideImage.png";
+import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+export const Form = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  const navigate = useNavigate();
+  const selectedType = watch("type");
+
+  useEffect(() => {
+    setValue("date", new Date());
+  }, [setValue]);
+
+  const handleSave = (data: FormData) => {
+    const formattedDate = data.date
+      ? format(data.date, "dd/MM/yyyy")
+      : "sem data";
+
+    const finalData = { ...data, date: formattedDate };
+    const currentData = JSON.parse(localStorage.getItem("financeData") || "[]");
+    currentData.push(finalData);
+    localStorage.setItem("financeData", JSON.stringify(currentData));
+
+    navigate("/dashboard");
+  };
+
+  return (
+    <div className="flex h-screen">
+      <div className="w-1/3 bg-gray-100 dark:bg-zinc-900 flex items-center px-8">
+        <form
+          onSubmit={handleSubmit(handleSave)}
+          className=" flex flex-col gap-6 text-gray-900 dark:text-white"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-orange-500 dark:text-purple-600">
+                Cadastro de Receitas e Despesas
+              </h2>
+              <ToggleTheme />
+            </div>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              Insira seus dados para cadastro
+            </span>
+          </div>
+
+          <FormType register={register} error={errors.type?.message} />
+
+          <div className="flex gap-2">
+            <div>
+              <Label>
+                <span>Valor</span>
+              </Label>
+              <Input
+                type="number"
+                step={0.01}
+                placeholder="Ex: 1500, 1929.32"
+                {...register("value")}
+              />
+            </div>
+            <div>
+              <Label>
+                <span>Data</span>
+              </Label>
+              <Calendar
+                selected={selectedDate}
+                onChange={(date) => {
+                  setSelectedDate(date);
+                  setValue("date", date ?? undefined);
+                }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <Label>
+              <span>Descrição</span>
+            </Label>
+            <Input
+              type="text"
+              placeholder="Ex: Aluguel, Salário, Netflix"
+              {...register("description")}
+            />
+          </div>
+
+          <div>
+            <Label>
+              <span>Categoria</span>
+            </Label>
+            <FormCategories selectedType={selectedType} register={register} />
+          </div>
+
+          <div className="flex gap-20 items-center mt-2">
+            <Button type="button" onClick={() => reset()}>
+              Limpar tudo
+            </Button>
+            <Button type="submit">Enviar</Button>
+          </div>
+        </form>
+      </div>
+
+      <div className="w-2/3 bg-gray-200 dark:bg-zinc-800">
+        <img
+          src={formImage}
+          alt="Imagem do formulário"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  );
+};

@@ -1,7 +1,6 @@
 import { LabelProps } from "./index";
-import React from "react";
 
 export const Label = (props: LabelProps) => {
   const { children } = props;
-  return <label>{children}</label>;
+  return <label className="flex flex-col">{children}</label>;
 };

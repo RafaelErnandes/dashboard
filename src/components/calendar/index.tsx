@@ -1,3 +1,5 @@
+import "../../index.css";
+
 import { CalendarProps } from "./index";
 import DatePicker from "react-datepicker";
 
@@ -5,7 +7,7 @@ export const Calendar = (props: CalendarProps) => {
   const { selected, onChange, error } = props;
 
   return (
-    <div>
+    <div className="flex gap-1">
       <DatePicker
         selected={selected}
         onChange={(date) => {
