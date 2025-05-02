@@ -4,7 +4,7 @@ import { CalendarProps } from "./index";
 import DatePicker from "react-datepicker";
 
 export const Calendar = (props: CalendarProps) => {
-  const { selected, onChange, error } = props;
+  const { selected, onChange } = props;
 
   return (
     <div className="flex gap-1">
@@ -17,7 +17,6 @@ export const Calendar = (props: CalendarProps) => {
         dateFormat="dd/MM/yyyy"
         className="input-base"
       />
-      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
 };

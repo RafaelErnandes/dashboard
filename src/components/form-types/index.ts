@@ -1,4 +1,4 @@
-import { FormData } from "../form/index";
+import { FormData } from "../../pages/form/index";
 import { UseFormRegister } from "react-hook-form";
 
 export type FormTypeProps = {

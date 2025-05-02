@@ -1,5 +1,6 @@
 import "react-datepicker/dist/react-datepicker.css";
 
+import { ArrowRightFromLine, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "../../components/button/index.tsx";
@@ -9,10 +10,9 @@ import { FormData } from "./index.ts";
 import { FormType } from "../../components/form-types/index.tsx";
 import { Input } from "../../components/input/index.tsx";
 import { Label } from "../../components/label/index.tsx";
-import React from "react";
 import { ToggleTheme } from "../../components/toggle-theme/index.tsx";
-import formImage from "../../images/formSideImage.png";
 import { format } from "date-fns";
+import imageTeste from "../../images/imgTeste.png";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -31,13 +31,14 @@ export const Form = () => {
   const selectedType = watch("type");
 
   useEffect(() => {
+    register("date", { required: "Data é obrigatória" });
     setValue("date", new Date());
-  }, [setValue]);
+  }, [register, setValue]);
 
   const handleSave = (data: FormData) => {
     const formattedDate = data.date
       ? format(data.date, "dd/MM/yyyy")
-      : "sem data";
+      : setValue("date", new Date());
 
     const finalData = { ...data, date: formattedDate };
     const currentData = JSON.parse(localStorage.getItem("financeData") || "[]");
@@ -65,9 +66,9 @@ export const Form = () => {
               Insira seus dados para cadastro
             </span>
           </div>
-
-          <FormType register={register} error={errors.type?.message} />
-
+          <div>
+            <FormType register={register} error={errors.type?.message} />
+          </div>
           <div className="flex gap-2">
             <div>
               <Label>
@@ -77,7 +78,15 @@ export const Form = () => {
                 type="number"
                 step={0.01}
                 placeholder="Ex: 1500, 1929.32"
-                {...register("value")}
+                {...register("value", {
+                  required: "Valor é obrigatório",
+                  // pattern: {
+                  //   value: /^\d+(,\d{2})?$/,
+                  //   message:
+                  //     "Digite um valor numérico válido com até duas casas decimais (ex: 1500,00)",
+                  // },
+                })}
+                error={errors.value?.message}
               />
             </div>
             <div>
@@ -101,7 +110,10 @@ export const Form = () => {
             <Input
               type="text"
               placeholder="Ex: Aluguel, Salário, Netflix"
-              {...register("description")}
+              {...register("description", {
+                required: "Descrição é obrigatório",
+              })}
+              error={errors.description?.message}
             />
           </div>
 
@@ -109,22 +121,38 @@ export const Form = () => {
             <Label>
               <span>Categoria</span>
             </Label>
-            <FormCategories selectedType={selectedType} register={register} />
+            <FormCategories
+              selectedType={selectedType}
+              register={register}
+              error={errors.category?.message}
+            />
           </div>
 
           <div className="flex gap-20 items-center mt-2">
-            <Button type="button" onClick={() => reset()}>
+            <Button
+              type="button"
+              className="button-base flex justify-center items-center gap-2"
+              onClick={() => reset()}
+            >
+              <CircleX className="w-5 h-5" />
               Limpar tudo
             </Button>
-            <Button type="submit">Enviar</Button>
+
+            <Button
+              type="submit"
+              className="button-base flex justify-center items-center gap-2"
+            >
+              Enviar
+              <ArrowRightFromLine className="w-5 h-5" />
+            </Button>
           </div>
         </form>
       </div>
 
       <div className="w-2/3 bg-gray-200 dark:bg-zinc-800">
         <img
-          src={formImage}
-          alt="Imagem do formulário"
+          src={imageTeste}
+          alt="Imagem meramente ilustrativa do dashboard"
           className="w-full h-full object-cover"
         />
       </div>

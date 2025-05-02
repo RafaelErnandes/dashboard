@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FormData } from "../../components/form";
+import { FormData } from "../../pages/form/index";
 import { useStoreData } from "../use-stored-data/index";
 
 export const useTotalReceitas = () => {

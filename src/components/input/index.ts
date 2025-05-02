@@ -5,4 +5,5 @@ export type InputProps = {
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   ref: React.Ref<HTMLInputElement>;
   step?: number;
+  error?: string;
 };

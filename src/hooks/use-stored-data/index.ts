@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FormData } from "../../components/form/index";
+import { FormData } from "../../pages/form/index";
 
 export const useStoreData = () => {
   const [data, setData] = useState<FormData[]>([]);

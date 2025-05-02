@@ -1,3 +1,4 @@
+import { ErrorMessage } from "../error-message/index.tsx";
 import { FormTypeProps } from "./index";
 
 export const FormType = (props: FormTypeProps) => {
@@ -18,7 +19,7 @@ export const FormType = (props: FormTypeProps) => {
           Despesa
         </option>
       </select>
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <ErrorMessage error={error} />}
     </>
   );
 };

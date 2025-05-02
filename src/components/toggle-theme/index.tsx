@@ -1,17 +1,21 @@
 import { Moon, Sun } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import { useThemeStore } from ".";
 
 export const ToggleTheme = () => {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleTheme } = useThemeStore();
 
-  const toggleDark = () => {
-    document.documentElement.classList.toggle("dark");
-    setIsDark(!isDark);
-  };
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   return (
-    <button type="button" onClick={toggleDark} className="cursor-pointer">
+    <button type="button" onClick={toggleTheme} className="cursor-pointer">
       {isDark ? (
         <Sun className="text-yellow-400 w-5 h-5" />
       ) : (
