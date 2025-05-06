@@ -1,8 +1,5 @@
-import { FormData } from "../../pages/form";
-import { UseFormRegister } from "react-hook-form";
+import { FormTypeProps } from "../form-types";
 
 export type FormCategoriesProps = {
   selectedType: string;
-  register: UseFormRegister<FormData>;
-  error?: string;
-};
+} & FormTypeProps;
