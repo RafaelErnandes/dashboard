@@ -1,4 +1,4 @@
-import { FormTypeProps } from "../form-types";
+import { FormTypeProps } from "../form-select-types";
 
 export type FormCategoriesProps = {
   selectedType: string;

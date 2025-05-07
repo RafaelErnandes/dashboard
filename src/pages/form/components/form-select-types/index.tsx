@@ -1,7 +1,7 @@
 import { ErrorMessage } from "../../../../components/error-message/index.tsx";
 import { FormTypeProps } from "./index";
 
-export const FormType = (props: FormTypeProps) => {
+export const FormSelectType = (props: FormTypeProps) => {
   const { register, error } = props;
   return (
     <div>

@@ -1,6 +1,6 @@
 import { FormCategoriesProps } from "./index";
 
-export const FormCategories = (props: FormCategoriesProps) => {
+export const FormSelectCategories = (props: FormCategoriesProps) => {
   const { selectedType, register, error } = props;
   return (
     <>
