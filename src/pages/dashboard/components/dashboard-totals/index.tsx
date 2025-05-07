@@ -1,6 +1,6 @@
-import { ToggleTheme } from "../toggle-theme/index.tsx";
-import { useTotalDespesas } from "../../hooks/use-total-despesas";
-import { useTotalReceitas } from "../../hooks/use-total-receitas";
+import { ToggleTheme } from "../../../../components/toggle-theme/index.tsx";
+import { useTotalDespesas } from "../../../../hooks/use-total-despesas/index.ts";
+import { useTotalReceitas } from "../../../../hooks/use-total-receitas/index.ts";
 
 export const DashboardTotals = () => {
   const totalReceitas = useTotalReceitas();

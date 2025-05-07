@@ -1,6 +1,6 @@
 import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
-import { FormData } from "../../../pages/form";
+import { FormData } from "../../..";
 
 export type FormFieldProps = {
   register: UseFormRegister<FormData>;

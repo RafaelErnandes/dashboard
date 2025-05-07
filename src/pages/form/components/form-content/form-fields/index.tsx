@@ -1,9 +1,9 @@
-import { Calendar } from "../../calendar/index.tsx";
+import { Calendar } from "../../../../../components/calendar/index.tsx";
 import { FormCategories } from "../../form-categories/index.tsx";
 import { FormFieldProps } from "./index.ts";
 import { FormType } from "../../form-types/index.tsx";
-import { Input } from "../../input/index.tsx";
-import { Label } from "../../label/index.tsx";
+import { Input } from "../../../../../components/input/index.tsx";
+import { Label } from "../../../../../components/label/index.tsx";
 
 export const FormFields = (props: FormFieldProps) => {
   const {
@@ -19,7 +19,7 @@ export const FormFields = (props: FormFieldProps) => {
     <>
       <FormType register={register} error={errors.type?.message} />
 
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         <div className="w-full">
           <Label>
             <span>Valor</span>
@@ -38,6 +38,7 @@ export const FormFields = (props: FormFieldProps) => {
           <Label>
             <span>Data</span>
           </Label>
+
           <Calendar
             selected={selectedDate}
             onChange={(date) => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { FormData } from "../../../pages/form/index"; // ajuste para o caminho correto
+import { FormData } from "../../../index"; // ajuste para o caminho correto
 import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";

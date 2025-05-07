@@ -1,6 +1,6 @@
 import { ArrowRightFromLine, CircleX } from "lucide-react";
 
-import { Button } from "../../button/index.tsx";
+import { Button } from "../../../../../components/button/index.tsx";
 import { FormActionsProps } from "./index.ts";
 
 export const FormActions = (props: FormActionsProps) => {

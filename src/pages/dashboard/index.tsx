@@ -1,10 +1,10 @@
 import { ArrowLeftToLine } from "lucide-react";
-import { BarGraphic } from "../../components/bar-graphic";
+import { BarGraphic } from "./components/graphics/bar-graphic/index.tsx";
 import { Button } from "../../components/button/index.tsx";
-import { DashboardHistory } from "../../components/dashboard-history";
-import { DashboardTotals } from "../../components/dashboard-totals/index";
-import { LineGraphic } from "../../components/line-graphic/index.tsx";
-import { PizzaGraphic } from "../../components/pizza-grapgic";
+import { DashboardHistory } from "./components/dashboard-history/index.tsx";
+import { DashboardTotals } from "./components/dashboard-totals/index";
+import { LineGraphic } from "./components/graphics/line-graphic/index.tsx";
+import { PizzaGraphic } from "./components/graphics/pizza-graphic/index.tsx";
 import { useNavigate } from "react-router-dom";
 
 export const DashboardPage = () => {

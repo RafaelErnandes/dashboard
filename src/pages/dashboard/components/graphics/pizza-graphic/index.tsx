@@ -12,9 +12,9 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-import { useThemeStore } from "../toggle-theme";
-import { useTotalDespesas } from "../../hooks/use-total-despesas";
-import { useTotalReceitas } from "../../hooks/use-total-receitas";
+import { useThemeStore } from "../../../../../components/toggle-theme";
+import { useTotalDespesas } from "../../../../../hooks/use-total-despesas";
+import { useTotalReceitas } from "../../../../../hooks/use-total-receitas";
 
 export const PizzaGraphic = () => {
   const totalReceitas = useTotalReceitas();

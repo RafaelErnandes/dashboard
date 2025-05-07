@@ -1,6 +1,6 @@
 import "react-datepicker/dist/react-datepicker.css";
 
-import { FormBody } from "../../components/form-content/form-body/index.tsx";
+import { FormBody } from "./components/form-content/form-body/index.tsx";
 import { ToggleTheme } from "../../components/toggle-theme/index.tsx";
 import imageTeste from "../../images/imgTeste.png";
 
@@ -24,7 +24,7 @@ export const Form = () => {
         </div>
       </div>
 
-      <div className="w-2/3 bg-gray-200 dark:bg-zinc-800">
+      <div className="w-2/3 bg-gray-200 dark:bg-zinc-800 lg:">
         <img
           src={imageTeste}
           alt="Imagem meramente ilustrativa do dashboard"

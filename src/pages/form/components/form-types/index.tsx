@@ -1,4 +1,4 @@
-import { ErrorMessage } from "../error-message/index.tsx";
+import { ErrorMessage } from "../../../../components/error-message/index.tsx";
 import { FormTypeProps } from "./index";
 
 export const FormType = (props: FormTypeProps) => {

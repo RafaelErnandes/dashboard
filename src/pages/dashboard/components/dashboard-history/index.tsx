@@ -1,4 +1,4 @@
-import { useStoreData } from "../../hooks/use-stored-data";
+import { useStoreData } from "../../../../hooks/use-stored-data";
 
 export const DashboardHistory = () => {
   const financeData = useStoreData();
