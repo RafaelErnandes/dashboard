@@ -16,7 +16,9 @@ export const DashboardHistory = () => {
             <span className="text-xs text-gray-400">{item.category}</span>
           </div>
           <div className="flex flex-col items-end">
-            <span className="text-sm font-medium truncate">{`R$ ${item.value}`}</span>
+            <span className="text-sm font-medium truncate">{`R$ ${
+              item.value ? item.value : 0
+            }`}</span>
             <span className="text-xs text-gray-400">
               {item.date?.toLocaleString()}
             </span>

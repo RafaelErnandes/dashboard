@@ -4,7 +4,7 @@ import { FormTypeProps } from "./index";
 export const FormType = (props: FormTypeProps) => {
   const { register, error } = props;
   return (
-    <>
+    <div>
       <select
         {...register("type", { required: "Categoria é obrigatória" })}
         className="input-base"
@@ -20,6 +20,6 @@ export const FormType = (props: FormTypeProps) => {
         </option>
       </select>
       {error && <ErrorMessage error={error} />}
-    </>
+    </div>
   );
 };

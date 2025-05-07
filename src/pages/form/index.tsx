@@ -1,6 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 
 import { ArrowRightFromLine, CircleX } from "lucide-react";
+import { FieldErrors, useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
 import { Button } from "../../components/button/index.tsx";
@@ -13,7 +15,6 @@ import { Label } from "../../components/label/index.tsx";
 import { ToggleTheme } from "../../components/toggle-theme/index.tsx";
 import { format } from "date-fns";
 import imageTeste from "../../images/imgTeste.png";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 export const Form = () => {
@@ -45,7 +46,11 @@ export const Form = () => {
     currentData.push(finalData);
     localStorage.setItem("financeData", JSON.stringify(currentData));
 
-    navigate("/dashboard");
+    toast.success("Dados enviados!");
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 100);
   };
 
   return (
@@ -53,24 +58,24 @@ export const Form = () => {
       <div className="w-1/3 bg-gray-100 dark:bg-zinc-900 flex items-center px-8">
         <form
           onSubmit={handleSubmit(handleSave)}
-          className=" flex flex-col gap-6 text-gray-900 dark:text-white"
+          className="flex flex-col gap-6 3xl:w-[450px] text-gray-900 dark:text-white"
         >
           <div>
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-orange-500 dark:text-purple-600">
+              <h2 className="text-xl 3xl:text-2xl font-semibold text-orange-500 dark:text-purple-600">
                 Cadastro de Receitas e Despesas
               </h2>
               <ToggleTheme />
             </div>
-            <span className="text-sm text-gray-600 dark:text-gray-400">
+            <span className="text-sm 3xl:text-lg text-gray-600 dark:text-gray-400">
               Insira seus dados para cadastro
             </span>
           </div>
-          <div>
-            <FormType register={register} error={errors.type?.message} />
-          </div>
+
+          <FormType register={register} error={errors.type?.message} />
+
           <div className="flex gap-2">
-            <div>
+            <div className="w-full">
               <Label>
                 <span>Valor</span>
               </Label>
@@ -80,16 +85,11 @@ export const Form = () => {
                 placeholder="Ex: 1500, 1929.32"
                 {...register("value", {
                   required: "Valor é obrigatório",
-                  // pattern: {
-                  //   value: /^\d+(,\d{2})?$/,
-                  //   message:
-                  //     "Digite um valor numérico válido com até duas casas decimais (ex: 1500,00)",
-                  // },
                 })}
                 error={errors.value?.message}
               />
             </div>
-            <div>
+            <div className="w-full">
               <Label>
                 <span>Data</span>
               </Label>
@@ -103,7 +103,7 @@ export const Form = () => {
             </div>
           </div>
 
-          <div>
+          <div className="w-full">
             <Label>
               <span>Descrição</span>
             </Label>
@@ -128,10 +128,10 @@ export const Form = () => {
             />
           </div>
 
-          <div className="flex gap-20 items-center mt-2">
+          <div className="flex gap-4">
             <Button
               type="button"
-              className="button-base flex justify-center items-center gap-2"
+              className="button-base w-1/2 flex justify-center items-center gap-2"
               onClick={() => reset()}
             >
               <CircleX className="w-5 h-5" />
@@ -140,12 +140,14 @@ export const Form = () => {
 
             <Button
               type="submit"
-              className="button-base flex justify-center items-center gap-2"
+              className="button-base w-1/2 flex justify-center items-center gap-2"
             >
               Enviar
               <ArrowRightFromLine className="w-5 h-5" />
             </Button>
           </div>
+
+          <ToastContainer />
         </form>
       </div>
 
