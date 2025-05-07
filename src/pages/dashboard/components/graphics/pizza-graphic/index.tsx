@@ -27,7 +27,7 @@ export const PizzaGraphic = () => {
     { name: "Despesas", value: totalDespesas },
   ];
 
-  const COLORS = isDark ? ["#2563EB", "#9333EA "] : ["#60A5FA", "#34D399 "];
+  const COLORS = isDark ? ["#2563EB", "#9333EA "] : ["#a855f7", "#f97316 "];
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -65,8 +65,8 @@ const CustomPizzaGraphicTooltip = ({
           const isReceita = entry.name === "Receitas";
 
           const textColor = isReceita
-            ? "text-blue-600 dark:text-blue-400"
-            : "text-emerald-400 dark:text-purple-400";
+            ? "text-violet-500 dark:text-blue-400"
+            : "text-orange-500 dark:text-purple-400";
 
           return (
             <p key={index} className={`text-sm ${textColor}`}>

@@ -15,30 +15,32 @@ export const DashboardPage = () => {
   };
 
   return (
-    <div className=" p-8 bg-gray-100 dark:bg-zinc-800">
-      <div className="flex flex-row w-full min-h-screen rounded-xl p-6 bg-gray-400 dark:bg-zinc-900  dark:text-white gap-6">
-        <div className="w-1/4 bg-gray-200 dark:bg-zinc-800 p-4 rounded-xl">
-          <h2 className="text-lg font-semibold mb-4">Histórico</h2>
+    <div className=" p-8 bg-slate-100 dark:bg-zinc-900">
+      <div className="flex flex-row w-full min-h-screen rounded-xl p-6 bg-slate-100 dark:bg-zinc-900  dark:text-white gap-6">
+        <div className="w-1/4 bg-gray-300 dark:bg-zinc-800 p-4 rounded-xl">
+          <h2 className="text-lg dark:text-white font-semibold mb-4">
+            Histórico
+          </h2>
           <div className="flex-1 overflow-y-auto mb-4 space-y-4 max-h-[calc(100vh-270px)] rounded-xl scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-zinc-500 scrollbar-track-transparent">
             <div className="pr-2">
               <DashboardHistory />
             </div>
           </div>
 
-          <div className="p-4 bg-white dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 bg-gray-400 dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-white dark:text-gray-300">
               Evite gastar mais do que você ganha. Acompanhe seus gastos e
               defina metas mensais para manter sua saúde financeira em dia!
             </p>
           </div>
-          <div className="p-4 mt-4 bg-white dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 mt-4 bg-gray-400 dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-white dark:text-gray-300">
               Evite compras por impulso: espere 24 horas antes de comprar algo
               não essencial. Muitas vezes, você perceberá que não precisa
               realmente daquilo.
@@ -51,7 +53,7 @@ export const DashboardPage = () => {
             <div className="flex items-start justify-end ">
               <Button
                 type="button"
-                className="flex flex-col items-center text-white"
+                className="flex flex-col items-center dark:text-white"
                 onClick={handleReturn}
               >
                 <ArrowLeftToLine className=" cursor-pointer" />
@@ -60,14 +62,14 @@ export const DashboardPage = () => {
             </div>
           </div>
           <div className="flex gap-4 g-[3000px]">
-            <div className="w-4/5 bg-gray-200 dark:bg-zinc-800 p-4 rounded-xl">
+            <div className="w-4/5 bg-gray-300 dark:bg-zinc-800 p-4 rounded-xl">
               <BarGraphic />
             </div>
-            <div className="w-2/5 bg-gray-200 dark:bg-zinc-800 p-4 rounded-xl text-[15px]">
+            <div className="w-2/5 bg-gray-300 dark:bg-zinc-800 p-4 rounded-xl text-[15px]">
               <PizzaGraphic />
             </div>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-zinc-800 p-4 rounded-xl">
+          <div className="w-full bg-gray-300 dark:bg-zinc-800 p-4 rounded-xl">
             <LineGraphic />
           </div>
         </div>
