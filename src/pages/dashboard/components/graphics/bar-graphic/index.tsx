@@ -14,14 +14,19 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
+import { BarGraphicProps } from ".";
 import { useStoreData } from "../../../../../hooks/use-stored-data";
 import { useThemeStore } from "../../../../../components/toggle-theme";
 
-export const BarGraphic = () => {
+export const BarGraphic = (props: BarGraphicProps) => {
+  const { filter } = props;
+
   const financeData = useStoreData();
   const isDark = useThemeStore((state) => state.isDark);
 
-  const chartData = financeData.map((item) => ({
+  const filteredData = financeData.filter((item) => item.type === filter);
+
+  const chartData = filteredData.map((item) => ({
     category: item.category,
     value: Number(item.value),
     type: item.type,
@@ -29,11 +34,13 @@ export const BarGraphic = () => {
 
   const barColor = isDark ? "#9333ea" : "#f97316";
   const axisColor = isDark ? "#fff" : "#000";
-  const gridColor = isDark ? "#4b5563" : "#fff";
+  const gridColor = isDark ? "#4b5563" : "#BEBEBE";
 
   return (
     <div className="flex flex-col w-full">
-      <h2 className="text-lg mb-4">Gráfico de Receitas e Despesas</h2>
+      <h2 className="text-lg mb-4">{`Gráfico de ${
+        filter === "receita" ? "Receitas" : "Despesas"
+      }`}</h2>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />

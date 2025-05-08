@@ -1,29 +1,46 @@
+import { DashboardTotalProps } from "./index.ts";
 import { ToggleTheme } from "../../../../components/toggle-theme/index.tsx";
 import { useTotalDespesas } from "../../../../hooks/use-total-despesas/index.ts";
 import { useTotalReceitas } from "../../../../hooks/use-total-receitas/index.ts";
 
-export const DashboardTotals = () => {
+export const DashboardTotals = (props: DashboardTotalProps) => {
+  const { setFilter } = props;
+
   const totalReceitas = useTotalReceitas();
   const totalDespesas = useTotalDespesas();
+
+  const handleClick = (type: "receita" | "despesa") => {
+    setFilter(type);
+  };
 
   return (
     <div className="w-full">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold dark:text-white">Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
         <div className="bg-slate-100 p-1 rounded-sm pt-2  dark:bg-zinc-700">
           <ToggleTheme />
         </div>
       </div>
 
       <div className="flex gap-4 mt-4">
-        <div className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md">
-          <span className="block text-lg font-medium mb-2">Receitas</span>
+        <div
+          className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105 "
+          onClick={() => handleClick("receita")}
+        >
+          <span className="block text-lg font-medium mb-2 hover:text-green-500">
+            Receitas
+          </span>
           <span className="text-xl font-bold">
             R${totalReceitas.toFixed(2)}
           </span>
         </div>
-        <div className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md">
-          <span className="block text-lg font-medium mb-2">Despesas</span>
+        <div
+          className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105"
+          onClick={() => handleClick("despesa")}
+        >
+          <span className="block text-lg font-medium mb-2 hover:text-red-500">
+            Despesas
+          </span>
           <span className="text-xl font-bold">
             R${totalDespesas.toFixed(2)}
           </span>

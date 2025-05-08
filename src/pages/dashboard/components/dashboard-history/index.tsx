@@ -1,3 +1,5 @@
+import { BanknoteArrowDown, BanknoteArrowUp } from "lucide-react";
+
 import { useStoreData } from "../../../../hooks/use-stored-data";
 
 export const DashboardHistory = () => {
@@ -13,8 +15,13 @@ export const DashboardHistory = () => {
             <span className="font-semibold text-sm capitalize">
               {item.description}
             </span>
-            <span className="text-xs text-gray-600 dark:text-gray-400">
+            <span className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1">
               {item.category}
+              {item.type === "receita" ? (
+                <BanknoteArrowUp className="text-green-500 h-4 w-4 mt-1" />
+              ) : (
+                <BanknoteArrowDown className="text-red-500 h-4 w-4 mt-1" />
+              )}
             </span>
           </div>
           <div className="flex flex-col items-end">
