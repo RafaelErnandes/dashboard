@@ -2,7 +2,7 @@ import { ErrorMessage } from "../error-message/index.tsx";
 import { InputProps } from "./index";
 
 export const Input = (props: InputProps) => {
-  const { placeholder, type, ref, step, error, ...rest } = props;
+  const { placeholder, type, ref, step, error, value, ...rest } = props;
   return (
     <>
       <input
@@ -11,6 +11,7 @@ export const Input = (props: InputProps) => {
         className="input-base"
         step={step}
         placeholder={placeholder}
+        value={value}
         {...rest}
       />
       {error && <ErrorMessage error={error} />}

@@ -3,7 +3,6 @@ import { FormFieldProps } from "./index.ts";
 import { FormSelectCategories } from "../../form-select-categories/index.tsx";
 import { FormSelectType } from "../../form-select-types/index.tsx";
 import { Input } from "../../../../../components/input/index.tsx";
-import { Label } from "../../../../../components/label/index.tsx";
 
 export const FormFields = (props: FormFieldProps) => {
   const {
@@ -21,9 +20,9 @@ export const FormFields = (props: FormFieldProps) => {
 
       <div className="flex gap-4">
         <div className="w-full">
-          <Label>
+          <label>
             <span>Valor</span>
-          </Label>
+          </label>
           <Input
             type="number"
             step={0.01}
@@ -35,9 +34,9 @@ export const FormFields = (props: FormFieldProps) => {
           />
         </div>
         <div className="w-full">
-          <Label>
+          <label>
             <span>Data</span>
-          </Label>
+          </label>
 
           <Calendar
             selected={selectedDate}
@@ -50,9 +49,9 @@ export const FormFields = (props: FormFieldProps) => {
       </div>
 
       <div className="w-full">
-        <Label>
+        <label>
           <span>Descrição</span>
-        </Label>
+        </label>
         <Input
           type="text"
           placeholder="Ex: Aluguel, Salário, Netflix"
@@ -64,9 +63,9 @@ export const FormFields = (props: FormFieldProps) => {
       </div>
 
       <div>
-        <Label>
+        <label>
           <span>Categoria</span>
-        </Label>
+        </label>
         <FormSelectCategories
           selectedType={selectedType}
           register={register}

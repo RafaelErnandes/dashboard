@@ -1,9 +1,10 @@
 export type InputProps = {
-  placeholder: string;
+  placeholder?: string;
   type: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  ref: React.Ref<HTMLInputElement>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  ref?: React.Ref<HTMLInputElement>;
   step?: number;
   error?: string;
+  value?: number | string;
 };

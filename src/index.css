@@ -18,7 +18,7 @@ option {
 
 .input-base {
   @apply p-2 rounded-sm border border-gray-400 focus:border-orange-500  transition;
-  @apply dark:border-zinc-600 dark:focus:border-purple-400 dark:bg-zinc-800 dark:placeholder-gray-500;
+  @apply dark:border-zinc-600 dark:focus:border-purple-400 dark:bg-zinc-800 dark:placeholder-gray-500 dark:text-white;
 }
 
 .button-base {

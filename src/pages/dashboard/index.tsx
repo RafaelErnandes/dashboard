@@ -1,6 +1,7 @@
 import { ArrowLeftToLine } from "lucide-react";
 import { BarGraphic } from "./components/graphics/bar-graphic/index.tsx";
 import { Button } from "../../components/button/index.tsx";
+import { CalculadoraJuros } from "./components/interest-calculator/index.tsx";
 import { DashboardHistory } from "./components/dashboard-history/index.tsx";
 import { DashboardTotals } from "./components/dashboard-totals/index";
 import { LineGraphic } from "./components/graphics/line-graphic/index.tsx";
@@ -15,9 +16,9 @@ export const DashboardPage = () => {
   };
 
   return (
-    <div className=" p-8 bg-slate-100 dark:bg-zinc-900">
-      <div className="flex flex-row w-full min-h-screen rounded-xl p-6 bg-slate-100 dark:bg-zinc-900  dark:text-white gap-6">
-        <div className="w-1/4 bg-gray-300 dark:bg-zinc-800 p-4 rounded-xl">
+    <div className=" p-8 bg-gray-400 dark:bg-zinc-900">
+      <div className="flex flex-row w-full min-h-screen rounded-xl p-6 bg-gray-400 dark:bg-zinc-900  dark:text-white gap-6">
+        <div className="w-1/4 bg-gray-200 dark:bg-zinc-800 p-4 rounded-xl">
           <h2 className="text-lg dark:text-white font-semibold mb-4">
             Histórico
           </h2>
@@ -27,20 +28,20 @@ export const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-gray-400 dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 bg-slate-100 dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
-            <p className="text-sm text-white dark:text-gray-300">
+            <p className="text-sm text-black dark:text-gray-300">
               Evite gastar mais do que você ganha. Acompanhe seus gastos e
               defina metas mensais para manter sua saúde financeira em dia!
             </p>
           </div>
-          <div className="p-4 mt-4 bg-gray-400 dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 mt-4 bg-slate-100  dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
-            <p className="text-sm text-white dark:text-gray-300">
+            <p className="text-sm text-black dark:text-gray-300">
               Evite compras por impulso: espere 24 horas antes de comprar algo
               não essencial. Muitas vezes, você perceberá que não precisa
               realmente daquilo.
@@ -74,6 +75,22 @@ export const DashboardPage = () => {
           </div>
         </div>
       </div>
+      <div className="mb-6">
+        <div>
+          <h1 className="text-orange-500 dark:text-purple-400 text-2xl font-bold mb-2">
+            Calcule seus juros com a nossa tabela
+          </h1>
+          <span className="dark:text-white text-lg block mb-2">
+            Saiba como organizar seu dinheiro
+          </span>
+          <p className="text-gray-700 dark:text-gray-300 text-base max-w-xl mb-2">
+            Entender como os juros compostos funcionam pode ajudar você a
+            planejar melhor seus investimentos e evitar dívidas que crescem
+            rapidamente.
+          </p>
+        </div>
+      </div>
+      <CalculadoraJuros />
     </div>
   );
 };
