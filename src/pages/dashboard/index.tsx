@@ -1,21 +1,39 @@
-import { ArrowLeftToLine } from "lucide-react";
+import { useEffect, useState } from "react";
+
 import { BarGraphic } from "./components/graphics/bar-graphic/index.tsx";
-import { Button } from "../../components/button/index.tsx";
 import { CalculadoraJuros } from "./components/interest-calculator/index.tsx";
+import { DashboardGoals } from "./components/dashboard-header/dashboard-goals/index.tsx";
 import { DashboardHistory } from "./components/dashboard-history/index.tsx";
-import { DashboardTotals } from "./components/dashboard-totals/index.tsx";
+import { DashboardTotals } from "./components/dashboard-header/dashboard-totals/index.tsx";
 import { LineGraphic } from "./components/graphics/line-graphic/index.tsx";
+import { Meta } from "./components/dashboard-header/dashboard-goals/meta-form/index.ts";
+import { MetaCard } from "./components/dashboard-header/dashboard-goals/meta-card/index.tsx";
 import { PizzaGraphic } from "./components/graphics/pizza-graphic/index.tsx";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export const DashboardPage = () => {
   const [filter, setFilter] = useState<"receita" | "despesa">("receita");
+  const [metas, setMetas] = useState<Meta[]>([]);
+  const [showInput, setShowInput] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  const handleShowInput = () => {
+    if (showInput === false) {
+      setShowInput(true);
+    } else {
+      setShowInput(false);
+    }
+  };
 
-  const handleReturn = () => {
-    navigate("/");
+  useEffect(() => {
+    const metasSalvas = JSON.parse(localStorage.getItem("metas") || "[]");
+    setMetas(metasSalvas);
+  }, []);
+
+  const atualizarValor = (id: number, novoValor: number) => {
+    const novasMetas = metas.map((meta) =>
+      meta.id === id ? { ...meta, valorAtual: novoValor } : meta
+    );
+    setMetas(novasMetas);
+    localStorage.setItem("metas", JSON.stringify(novasMetas));
   };
 
   return (
@@ -54,16 +72,10 @@ export const DashboardPage = () => {
         <div className="flex flex-col w-3/4 gap-4">
           <div className="grid grid-cols-2 gap-4">
             <DashboardTotals setFilter={setFilter} />
-            <div className="flex items-start justify-end ">
-              <Button
-                type="button"
-                className="flex flex-col items-center  text-white"
-                onClick={handleReturn}
-              >
-                <ArrowLeftToLine className=" cursor-pointer" />
-                <span>Retornar</span>
-              </Button>
-            </div>
+            <DashboardGoals
+              showForm={showInput}
+              onToggleForm={handleShowInput}
+            />
           </div>
           <div className="flex gap-4 g-[3000px]">
             <div className="w-4/5 bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl">
@@ -78,22 +90,15 @@ export const DashboardPage = () => {
           </div>
         </div>
       </div>
-      <div className="mb-6">
-        <div>
-          <h1 className="text-orange-500 dark:text-purple-400 text-5xl font-bold mb-2">
-            Calcule seus juros com a nossa tabela
-          </h1>
-          <span className="dark:text-white text-3xl block mb-2">
-            Saiba como organizar seu dinheiro
-          </span>
-          <p className="text-gray-700 dark:text-gray-300 text-xl mb-2 max-w-2xl">
-            Entender como os juros compostos funcionam pode ajudar você a
-            planejar melhor seus investimentos e evitar dívidas que crescem
-            rapidamente.
-          </p>
-        </div>
+      <div className="flex flex-col gap-4">
+        {metas.length === 0 ? (
+          <p>Nenhuma meta adicionada ainda.</p>
+        ) : (
+          metas.map((meta) => (
+            <MetaCard key={meta.id} meta={meta} onAtualizar={atualizarValor} />
+          ))
+        )}
       </div>
-
       <CalculadoraJuros />
     </div>
   );

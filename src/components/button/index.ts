@@ -3,6 +3,6 @@ import { ReactNode } from "react";
 export type ButtonProps = {
   children: ReactNode;
   type: "submit" | "reset" | "button" | undefined;
-  className: string;
+  className?: string;
   onClick?: () => void;
 };
