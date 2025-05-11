@@ -15,7 +15,7 @@ export const DashboardPage = () => {
   const [metas, setMetas] = useState<Meta[]>([]);
   const [showInput, setShowInput] = useState<boolean>(false);
 
-  const handleShowInput = () => {
+  const handleShowForm = () => {
     if (showInput === false) {
       setShowInput(true);
     } else {
@@ -71,11 +71,11 @@ export const DashboardPage = () => {
         </div>
         <div className="flex flex-col w-3/4 gap-4">
           <div className="grid grid-cols-2 gap-4">
-            <DashboardTotals setFilter={setFilter} />
-            <DashboardGoals
-              showForm={showInput}
-              onToggleForm={handleShowInput}
+            <DashboardTotals
+              setFilter={setFilter}
+              onToggleForm={handleShowForm}
             />
+            <DashboardGoals showForm={showInput} />
           </div>
           <div className="flex gap-4 g-[3000px]">
             <div className="w-4/5 bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl">

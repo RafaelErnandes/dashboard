@@ -4,7 +4,7 @@ import { useTotalDespesas } from "../../../../../hooks/use-total-despesas/index.
 import { useTotalReceitas } from "../../../../../hooks/use-total-receitas/index.ts";
 
 export const DashboardTotals = (props: DashboardTotalProps) => {
-  const { setFilter } = props;
+  const { setFilter, onToggleForm } = props;
 
   const totalReceitas = useTotalReceitas();
   const totalDespesas = useTotalDespesas();
@@ -20,7 +20,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
           <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
         </div>
         <div className="flex justify-end gap-4">
-          <DashboardButtons />
+          <DashboardButtons onClick={onToggleForm} />
         </div>
       </div>
 

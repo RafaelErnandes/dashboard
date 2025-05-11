@@ -6,7 +6,7 @@ import { MetaForm } from "./meta-form/index.tsx";
 import { useNavigate } from "react-router-dom";
 
 export const DashboardGoals = (props: DashboardGoalsProps) => {
-  const { showForm, onToggleForm } = props;
+  const { showForm } = props;
 
   const navigate = useNavigate();
 
@@ -21,8 +21,16 @@ export const DashboardGoals = (props: DashboardGoalsProps) => {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-end">
+    <div className="grid grid-cols-[60%_40%]">
+      {showForm === true ? (
+        <div>
+          <h2 className="text-xl font-bold mb-2">Criar nova meta:</h2>
+          {showForm && <MetaForm onAdd={adicionarMeta} />}
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <div className="flex justify-end">
         <Button
           type="button"
           className="flex flex-col items-center text-white"
@@ -32,14 +40,6 @@ export const DashboardGoals = (props: DashboardGoalsProps) => {
           <span>Retornar</span>
         </Button>
       </div>
-      {showForm === true ? (
-        <div>
-          <h2 className="text-xl font-bold mb-2">Criar nova meta:</h2>
-          <MetaForm onAdd={adicionarMeta} />
-        </div>
-      ) : (
-        <div></div>
-      )}
     </div>
   );
 };
