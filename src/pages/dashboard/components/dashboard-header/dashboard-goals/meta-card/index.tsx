@@ -1,11 +1,14 @@
 import { Button } from "../../../../../../components/button/index.tsx";
 import { MetaCardProps } from "./index";
+import { useState } from "react";
 
 export const MetaCard = (props: MetaCardProps) => {
   const { meta, onAtualizar, onRemover } = props;
+  const [mostrarInput, setMostrarInput] = useState(false);
+  const [valorAdicional, setValorAdicional] = useState("");
 
-  const adicionarValor = () => {
-    const valor = parseFloat(prompt("Quanto deseja adicionar") || "0");
+  const handleAddValue = () => {
+    const valor = parseFloat(valorAdicional);
     if (!isNaN(valor)) {
       const novoValor = meta.valorAtual + valor;
 
@@ -14,6 +17,9 @@ export const MetaCard = (props: MetaCardProps) => {
       } else {
         onAtualizar(meta.id, novoValor);
       }
+
+      setValorAdicional("");
+      setMostrarInput(false);
     }
   };
 
@@ -36,14 +42,42 @@ export const MetaCard = (props: MetaCardProps) => {
             max={meta.valorMeta}
             className="w-full h-3 rounded overflow-hidden progess-base"
           ></progress>
-
-          <Button
-            type="submit"
-            onClick={adicionarValor}
-            className="bg-orange-500 text-white dark:bg-purple-600 p-1 rounded-sm mt-3 w-50 cursor-pointer"
-          >
-            Adicionar Valor
-          </Button>
+          {mostrarInput ? (
+            <div className="flex items-center gap-2 mt-3">
+              <input
+                type="number"
+                value={valorAdicional}
+                onChange={(e) => setValorAdicional(e.target.value)}
+                placeholder="Valor a adicionar"
+                className="p-1 rounded text-black bg-slate-200 dark:text-white dark:bg-zinc-700"
+              />
+              <Button
+                type="button"
+                onClick={handleAddValue}
+                className="bg-green-500 text-white px-2 py-1 rounded cursor-pointer"
+              >
+                Confirmar
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  setMostrarInput(false);
+                  setValorAdicional("");
+                }}
+                className="bg-gray-500 text-white px-2 py-1 rounded cursor-pointer"
+              >
+                Cancelar
+              </Button>
+            </div>
+          ) : (
+            <Button
+              type="button"
+              onClick={() => setMostrarInput(true)}
+              className="bg-orange-500 text-white dark:bg-purple-600 p-1 rounded-sm mt-3 w-50 cursor-pointer"
+            >
+              Adicionar Valor
+            </Button>
+          )}
         </div>
       </div>
     </div>

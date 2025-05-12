@@ -27,7 +27,7 @@ option {
 }
 
 .progess-base {
-  @apply [&::-webkit-progress-bar]:bg-gray-400 dark:[&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-green-500;
+  @apply [&::-webkit-progress-bar]:bg-slate-300 dark:[&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-green-500;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
