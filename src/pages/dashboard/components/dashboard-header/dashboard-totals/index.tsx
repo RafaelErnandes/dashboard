@@ -26,7 +26,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
 
       <div className="flex gap-4 mt-4">
         <div
-          className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105 "
+          className="bg-zinc-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105 "
           onClick={() => handleClick("receita")}
         >
           <span className="block text-lg font-medium mb-2 hover:text-green-500">
@@ -37,7 +37,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
           </span>
         </div>
         <div
-          className="bg-slate-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105"
+          className="bg-zinc-100 dark:bg-zinc-700 p-4 rounded-xl w-full text-black dark:text-white shadow-md cursor-pointer transform transition-transform duration-200 ease-in-out hover:scale-105"
           onClick={() => handleClick("despesa")}
         >
           <span className="block text-lg font-medium mb-2 hover:text-red-500">

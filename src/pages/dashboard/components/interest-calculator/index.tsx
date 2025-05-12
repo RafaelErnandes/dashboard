@@ -51,7 +51,7 @@ export const CalculadoraJuros = () => {
           melhor seus investimentos e evitar dívidas que crescem rapidamente.
         </p>
       </div>
-      <div className="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-md mt-6">
+      <div className="bg-zinc-100 dark:bg-zinc-800 p-6 rounded-xl shadow-md mt-6">
         <h2 className="text-xl font-bold mb-4 text-orange-500 dark:text-purple-400">
           Comparativo de Juros (12% ao ano)
         </h2>

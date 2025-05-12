@@ -45,7 +45,7 @@ export const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="p-4 bg-slate-100 dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
@@ -54,7 +54,7 @@ export const DashboardPage = () => {
               defina metas mensais para manter sua saúde financeira em dia!
             </p>
           </div>
-          <div className="p-4 mt-4 bg-slate-100  dark:bg-zinc-900 rounded-xl shadow-md">
+          <div className="p-4 mt-4 bg-zinc-100  dark:bg-zinc-900 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold text-orange-500 dark:text-purple-400 mb-2">
               Dica de Finanças
             </h3>
@@ -77,14 +77,14 @@ export const DashboardPage = () => {
             />
           </div>
           <div className="flex gap-4 g-[3000px]">
-            <div className="w-4/5 bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl">
+            <div className="w-4/5 bg-zinc-100 dark:bg-zinc-800 p-4 rounded-xl">
               <BarGraphic filter={filter} />
             </div>
-            <div className="w-2/5 bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl text-[15px]">
+            <div className="w-2/5 bg-zinc-100 dark:bg-zinc-800 p-4 rounded-xl text-[15px]">
               <PizzaGraphic />
             </div>
           </div>
-          <div className="w-full bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl">
+          <div className="w-full bg-zinc-100 dark:bg-zinc-800 p-4 rounded-xl">
             <LineGraphic />
           </div>
         </div>

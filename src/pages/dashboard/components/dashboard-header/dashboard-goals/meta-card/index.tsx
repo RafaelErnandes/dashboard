@@ -26,7 +26,7 @@ export const MetaCard = (props: MetaCardProps) => {
   return (
     <div className="mr-5">
       <div
-        className="p-4 rounded bg-slate-100 dark:bg-zinc-800 dark:text-white mb-5 shadow-lg"
+        className="p-4 rounded bg-zinc-100 dark:bg-zinc-800 dark:text-white mb-5 shadow-lg"
         id={`id-${meta.id}`}
       >
         <div className="flex flex-col gap-1">

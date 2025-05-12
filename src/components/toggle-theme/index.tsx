@@ -20,7 +20,7 @@ export const ToggleTheme = () => {
     <Tooltip.TooltipProvider delayDuration={200}>
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
-          <div className="bg-slate-100 p-2 rounded-sm dark:bg-zinc-700 flex items-center">
+          <div className="bg-zinc-100 p-2 rounded-sm dark:bg-zinc-700 flex items-center">
             <button
               type="button"
               onClick={toggleTheme}
@@ -36,7 +36,7 @@ export const ToggleTheme = () => {
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-slate-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
+            className="bg-zinc-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
             side="top"
             sideOffset={5}
           >

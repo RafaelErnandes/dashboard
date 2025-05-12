@@ -11,7 +11,7 @@ export const MetaButton = (props: MetaButtonProps) => {
       <Tooltip.Root>
         <Tooltip.Trigger asChild>
           <div
-            className="bg-slate-100 p-2 rounded-sm dark:bg-zinc-700 flex items-center cursor-pointer"
+            className="bg-zinc-100 p-2 rounded-sm dark:bg-zinc-700 flex items-center cursor-pointer"
             onClick={onClick}
           >
             <Goal />
@@ -19,7 +19,7 @@ export const MetaButton = (props: MetaButtonProps) => {
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-slate-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
+            className="bg-zinc-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
             side="top"
             sideOffset={5}
           >

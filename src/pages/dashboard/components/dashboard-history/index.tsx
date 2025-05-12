@@ -9,7 +9,7 @@ export const DashboardHistory = () => {
       {financeData.map((item, index) => (
         <div
           key={index}
-          className="bg-slate-100 dark:bg-zinc-900 text-black dark:text-white p-4 rounded-lg shadow-lg flex justify-between items-center"
+          className="bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white p-4 rounded-lg shadow-lg flex justify-between items-center"
         >
           <div className="flex flex-col w-full space-y-1">
             <span className="font-semibold text-sm capitalize">
