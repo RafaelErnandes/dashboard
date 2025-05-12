@@ -2,6 +2,6 @@ import { Meta } from "../meta-form";
 
 export type MetaCardProps = {
   meta: Meta;
-  onAtualizar: (id: number, novoValorAtual: number) => void;
-  onRemover: (id: number) => void;
+  onAtualizar: (id: string, novoValorAtual: number) => void;
+  onRemover: (id: string) => void;
 };

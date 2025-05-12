@@ -21,7 +21,7 @@ export const useDashboardMeta = () => {
     setMetas(metasSalvas);
   }, []);
 
-  const atualizarValor = (id: number, novoValor: number) => {
+  const atualizarValor = (id: string, novoValor: number) => {
     const novasMetas = metas.map((meta) =>
       meta.id === id ? { ...meta, valorAtual: novoValor } : meta
     );
@@ -36,12 +36,12 @@ export const useDashboardMeta = () => {
     setScrollToMetas(true);
   };
 
-  const removeMeta = (id: number) => {
+  const removeMeta = (id: string) => {
     const novasMetas = metas.filter((meta) => meta.id !== id);
     setMetas(novasMetas);
     localStorage.setItem("metas", JSON.stringify(novasMetas));
 
-    toast.success(`Meta ${novasMetas} concluida!`);
+    toast.success(`Meta concluida!`);
   };
 
   return {

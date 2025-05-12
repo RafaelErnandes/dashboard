@@ -4,6 +4,7 @@ import { Button } from "../../../../../../components/button/index.tsx";
 import { CircleCheckBig } from "lucide-react";
 import { Input } from "../../../../../../components/input/index.tsx";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 export const MetaForm = (props: MetaFormProps) => {
   const { onAdd } = props;
@@ -17,7 +18,7 @@ export const MetaForm = (props: MetaFormProps) => {
 
   const onSubmit = (data: MetaFormData) => {
     onAdd({
-      id: Date.now(),
+      id: uuidv4(),
       nome: data.nome,
       valorMeta: parseFloat(data.valorMeta),
       valorAtual: 0,

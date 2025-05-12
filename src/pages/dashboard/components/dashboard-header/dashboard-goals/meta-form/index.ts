@@ -3,7 +3,7 @@ export type MetaFormProps = {
 };
 
 export type Meta = {
-  id: number;
+  id: string;
   nome: string;
   valorMeta: number;
   valorAtual: number;
