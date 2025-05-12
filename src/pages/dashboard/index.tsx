@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { BarGraphic } from "./components/graphics/bar-graphic/index.tsx";
 import { CalculadoraJuros } from "./components/interest-calculator/index.tsx";
@@ -6,35 +6,31 @@ import { DashboardGoals } from "./components/dashboard-header/dashboard-goals/in
 import { DashboardHistory } from "./components/dashboard-history/index.tsx";
 import { DashboardTotals } from "./components/dashboard-header/dashboard-totals/index.tsx";
 import { LineGraphic } from "./components/graphics/line-graphic/index.tsx";
-import { Meta } from "./components/dashboard-header/dashboard-goals/meta-form/index.ts";
 import { MetaCard } from "./components/dashboard-header/dashboard-goals/meta-card/index.tsx";
 import { PizzaGraphic } from "./components/graphics/pizza-graphic/index.tsx";
+import { useDashboardMeta } from "./hooks/useDashboardMeta.ts";
 
 export const DashboardPage = () => {
   const [filter, setFilter] = useState<"receita" | "despesa">("receita");
-  const [metas, setMetas] = useState<Meta[]>([]);
-  const [showInput, setShowInput] = useState<boolean>(false);
 
-  const handleShowForm = () => {
-    if (showInput === false) {
-      setShowInput(true);
-    } else {
-      setShowInput(false);
-    }
-  };
+  const metasRef = useRef<HTMLDivElement>(null);
+  const {
+    metas,
+    showInput,
+    adicionarMeta,
+    atualizarValor,
+    handleShowForm,
+    removeMeta,
+    scrollToMetas,
+    setScrollToMetas,
+  } = useDashboardMeta();
 
   useEffect(() => {
-    const metasSalvas = JSON.parse(localStorage.getItem("metas") || "[]");
-    setMetas(metasSalvas);
-  }, []);
-
-  const atualizarValor = (id: number, novoValor: number) => {
-    const novasMetas = metas.map((meta) =>
-      meta.id === id ? { ...meta, valorAtual: novoValor } : meta
-    );
-    setMetas(novasMetas);
-    localStorage.setItem("metas", JSON.stringify(novasMetas));
-  };
+    if (scrollToMetas) {
+      metasRef.current?.scrollIntoView({ behavior: "smooth" });
+      setScrollToMetas(false);
+    }
+  }, [scrollToMetas]);
 
   return (
     <div className=" p-8 bg-gray-300 dark:bg-zinc-900">
@@ -75,7 +71,10 @@ export const DashboardPage = () => {
               setFilter={setFilter}
               onToggleForm={handleShowForm}
             />
-            <DashboardGoals showForm={showInput} />
+            <DashboardGoals
+              showForm={showInput}
+              onAdicionarMeta={adicionarMeta}
+            />
           </div>
           <div className="flex gap-4 g-[3000px]">
             <div className="w-4/5 bg-slate-100 dark:bg-zinc-800 p-4 rounded-xl">
@@ -90,12 +89,30 @@ export const DashboardPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div>
+        <h1 className="text-orange-500 dark:text-purple-400 text-5xl font-bold mb-2">
+          Veja suas metas e as organize
+        </h1>
+        <span className="dark:text-white text-3xl block mb-2">
+          Transforme seus sonhos em objetivos alcançáveis
+        </span>
+        <p className="text-gray-700 dark:text-gray-300 text-xl mb-2 max-w-4xl">
+          Definir metas financeiras claras é o primeiro passo para conquistar o
+          que você deseja. Acompanhe seu progresso, adicione valores e mantenha
+          o foco no que realmente importa.
+        </p>
+      </div>
+      <div className="grid grid-cols-2 p-8" ref={metasRef}>
         {metas.length === 0 ? (
-          <p>Nenhuma meta adicionada ainda.</p>
+          <p className="dark:text-white">Nenhuma meta adicionada ainda.</p>
         ) : (
           metas.map((meta) => (
-            <MetaCard key={meta.id} meta={meta} onAtualizar={atualizarValor} />
+            <MetaCard
+              key={meta.id}
+              meta={meta}
+              onAtualizar={atualizarValor}
+              onRemover={removeMeta}
+            />
           ))
         )}
       </div>

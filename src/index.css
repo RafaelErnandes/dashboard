@@ -17,13 +17,17 @@ option {
 }
 
 .input-base {
-  @apply p-2 rounded-sm border border-gray-400 focus:border-orange-500  transition;
+  @apply p-2 rounded-sm border bg-gray-200 border-gray-400 focus:border-orange-500  transition;
   @apply dark:border-zinc-600 dark:focus:border-purple-400 dark:bg-zinc-800 dark:placeholder-gray-500 dark:text-white;
 }
 
 .button-base {
   @apply bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md cursor-pointer;
   @apply dark:bg-purple-600 dark:hover:bg-purple-700;
+}
+
+.progess-base {
+  @apply [&::-webkit-progress-bar]:bg-gray-400 dark:[&::-webkit-progress-bar]:bg-gray-300 [&::-webkit-progress-value]:bg-green-500;
 }
 
 input[type="number"]::-webkit-outer-spin-button,

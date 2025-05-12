@@ -19,7 +19,7 @@ export const MetaButton = (props: MetaButtonProps) => {
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            className="bg-slate-100 dark:bg-zinc-700 dark:text-white text-xs px-2 py-1 rounded shadow"
+            className="bg-slate-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
             side="top"
             sideOffset={5}
           >
