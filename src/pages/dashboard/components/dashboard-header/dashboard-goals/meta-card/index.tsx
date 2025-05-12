@@ -23,6 +23,11 @@ export const MetaCard = (props: MetaCardProps) => {
     }
   };
 
+  const handleConfirm = () => {
+    setMostrarInput(false);
+    setValorAdicional("");
+  };
+
   return (
     <div className="mr-5">
       <div
@@ -60,10 +65,7 @@ export const MetaCard = (props: MetaCardProps) => {
               </Button>
               <Button
                 type="button"
-                onClick={() => {
-                  setMostrarInput(false);
-                  setValorAdicional("");
-                }}
+                onClick={handleConfirm}
                 className="bg-gray-500 text-white px-2 py-1 rounded cursor-pointer"
               >
                 Cancelar
