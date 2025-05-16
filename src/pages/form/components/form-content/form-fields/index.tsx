@@ -3,6 +3,7 @@ import { FormFieldProps } from "./index.ts";
 import { FormSelectCategories } from "../../form-select-categories/index.tsx";
 import { FormSelectType } from "../../form-select-types/index.tsx";
 import { Input } from "../../../../../components/input/index.tsx";
+import { MoneyInput } from "../../../../../components/money-input/index.tsx";
 
 export const FormFields = (props: FormFieldProps) => {
   const {
@@ -23,14 +24,16 @@ export const FormFields = (props: FormFieldProps) => {
           <label>
             <span>Valor</span>
           </label>
-          <Input
-            type="number"
-            step={0.01}
-            placeholder="Ex: 1500, 1929.32"
-            {...register("value", {
-              required: "Valor é obrigatório",
-            })}
-            error={errors.value?.message}
+          <MoneyInput
+            onChangeValue={(_, originalValue) => {
+              const parsed =
+                typeof originalValue === "string"
+                  ? parseFloat(originalValue)
+                  : originalValue;
+              setValue("value", isNaN(parsed) ? 0 : parsed, {
+                shouldValidate: true,
+              });
+            }}
           />
         </div>
         <div className="w-full">

@@ -1,12 +1,27 @@
-import { BanknoteArrowDown, BanknoteArrowUp } from "lucide-react";
+import { BanknoteArrowDown, BanknoteArrowUp, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import { useStoreData } from "../../../../hooks/use-stored-data";
+import { Button } from "../../../../components/button/index.tsx";
+import { FormData } from "../../../form/index.ts";
 
 export const DashboardHistory = () => {
-  const financeData = useStoreData();
+  const [newFinanceData, setNewFinanceData] = useState<FormData[]>([]);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("financeData") || "[]");
+    setNewFinanceData(storedData);
+  }, []);
+
+  const removeItem = (id: string) => {
+    const storedData = JSON.parse(localStorage.getItem("financeData") || "[]");
+    const newData = storedData.filter((item: any) => item.id !== id);
+    localStorage.setItem("financeData", JSON.stringify(newData));
+    setNewFinanceData(newData);
+  };
+
   return (
     <div className="mb-4 space-y-4">
-      {financeData.map((item, index) => (
+      {newFinanceData.map((item, index) => (
         <div
           key={index}
           className="bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white p-4 rounded-lg shadow-lg flex justify-between items-center"
@@ -31,6 +46,9 @@ export const DashboardHistory = () => {
             <span className="text-xs text-gray-600 dark:text-gray-400">
               {item.date?.toLocaleString()}
             </span>
+            <Button type="button" onClick={() => removeItem(item.id)}>
+              <Trash2 className="w-4 h-4 text-red-600 cursor-pointer" />
+            </Button>
           </div>
         </div>
       ))}

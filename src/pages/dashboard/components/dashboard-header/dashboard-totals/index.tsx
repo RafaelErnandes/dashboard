@@ -33,7 +33,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
             Receitas
           </span>
           <span className="text-xl font-bold">
-            R${totalReceitas.toFixed(2)}
+            R${totalReceitas.toFixed(2).replace(".", ",")}
           </span>
         </div>
         <div
@@ -44,7 +44,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
             Despesas
           </span>
           <span className="text-xl font-bold">
-            R${totalDespesas.toFixed(2)}
+            R${totalDespesas.toFixed(2).replace(".", ",")}
           </span>
         </div>
       </div>

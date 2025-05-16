@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 export const useFormLogic = () => {
   const {
@@ -30,7 +31,7 @@ export const useFormLogic = () => {
       ? format(data.date, "dd/MM/yyyy")
       : setValue("date", new Date());
 
-    const finalData = { ...data, date: formattedDate };
+    const finalData = { ...data, id: uuidv4(), date: formattedDate };
     const currentData = JSON.parse(localStorage.getItem("financeData") || "[]");
     currentData.push(finalData);
     localStorage.setItem("financeData", JSON.stringify(currentData));
