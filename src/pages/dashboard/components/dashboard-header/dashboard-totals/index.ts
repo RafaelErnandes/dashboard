@@ -1,4 +1,4 @@
 export type DashboardTotalProps = {
-  setFilter: (type: "receita" | "despesa") => void;
+  setFilter: (type: "receita" | "despesa" | "todos") => void;
   onToggleForm: () => void;
 };

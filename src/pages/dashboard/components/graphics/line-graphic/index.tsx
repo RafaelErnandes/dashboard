@@ -13,11 +13,11 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-import { useStoreData } from "../../../../../hooks/use-stored-data";
+import { useFinanceStore } from "../../../../../hooks/use-finance-store";
 import { useThemeStore } from "../../../../../components/toggle-theme";
 
 export const LineGraphic = () => {
-  const financeData = useStoreData();
+  const financeData = useFinanceStore((state) => state.financeData);
   const isDark = useThemeStore((state) => state.isDark);
 
   const chartData = financeData.map((item) => ({

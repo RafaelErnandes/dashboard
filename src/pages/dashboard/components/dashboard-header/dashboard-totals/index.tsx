@@ -1,5 +1,8 @@
+import * as Tooltip from "@radix-ui/react-tooltip";
+
 import { DashboardButtons } from "./dashboard-buttons/index.tsx";
 import { DashboardTotalProps } from "./index.ts";
+import { Grid } from "lucide-react";
 import { useTotalDespesas } from "../../../../../hooks/use-total-despesas/index.ts";
 import { useTotalReceitas } from "../../../../../hooks/use-total-receitas/index.ts";
 
@@ -9,7 +12,7 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
   const totalReceitas = useTotalReceitas();
   const totalDespesas = useTotalDespesas();
 
-  const handleClick = (type: "receita" | "despesa") => {
+  const handleClick = (type: "receita" | "despesa" | "todos") => {
     setFilter(type);
   };
 
@@ -47,6 +50,28 @@ export const DashboardTotals = (props: DashboardTotalProps) => {
             R${totalDespesas.toFixed(2).replace(".", ",")}
           </span>
         </div>
+        <Tooltip.TooltipProvider>
+          <Tooltip.Root>
+            <Tooltip.Trigger asChild>
+              <div
+                onClick={() => handleClick("todos")}
+                className="flex h-10 items-center gap-1 cursor-pointer bg-orange-500 dark:bg-purple-600 text-white rounded-md px-2 py-1 shadow-md hover:bg-orange-600 dark:hover:bg-purple-700 select-none text-sm"
+              >
+                <Grid size={16} />
+              </div>
+            </Tooltip.Trigger>
+            <Tooltip.Portal>
+              <Tooltip.Content
+                className="bg-zinc-100 dark:bg-zinc-700 dark:text-white text-sm px-2 py-1 rounded shadow"
+                side="right"
+                sideOffset={5}
+              >
+                Mostrar Tudo
+                <Tooltip.Arrow className="fill-slate-100 dark:fill-zinc-700" />
+              </Tooltip.Content>
+            </Tooltip.Portal>
+          </Tooltip.Root>
+        </Tooltip.TooltipProvider>
       </div>
     </div>
   );

@@ -1,3 +1,3 @@
 export type BarGraphicProps = {
-  filter: "receita" | "despesa";
+  filter: "receita" | "despesa" | "todos";
 };

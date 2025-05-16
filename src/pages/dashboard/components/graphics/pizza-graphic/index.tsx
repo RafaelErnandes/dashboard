@@ -12,19 +12,15 @@ import {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-import { useStoreData } from "../../../../../hooks/use-stored-data";
 import { useThemeStore } from "../../../../../components/toggle-theme";
+import { useTotalDespesas } from "../../../../../hooks/use-total-despesas";
+import { useTotalReceitas } from "../../../../../hooks/use-total-receitas";
 
 export const PizzaGraphic = () => {
   const isDark = useThemeStore((state) => state.isDark);
-  const financeData = useStoreData();
 
-  const totalReceitas = financeData.filter(
-    (item) => item.type === "receita"
-  ).length;
-  const totalDespesas = financeData.filter(
-    (item) => item.type === "despesa"
-  ).length;
+  const totalReceitas = useTotalReceitas();
+  const totalDespesas = useTotalDespesas();
 
   const data = [
     { name: "Receitas", value: totalReceitas },
@@ -41,9 +37,7 @@ export const PizzaGraphic = () => {
           cx="50%"
           cy="50%"
           labelLine={false}
-          label={({ name, percent }) =>
-            `${name}: ${(percent * 100).toFixed(0)}%`
-          }
+          label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
           outerRadius={80}
           dataKey="value"
         >
@@ -71,10 +65,14 @@ const CustomPizzaGraphicTooltip = ({
             ? "text-violet-500 dark:text-blue-400"
             : "text-orange-500 dark:text-purple-400";
 
+          const valorFormatado = Number(entry.value).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+
           return (
             <p key={index} className={`text-sm ${textColor}`}>
-              {entry.name}:
-              <span className="ml-2">{entry.value} lançamentos</span>
+              {entry.name}:<span className="ml-2">{valorFormatado}</span>
             </p>
           );
         })}

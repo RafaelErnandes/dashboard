@@ -15,22 +15,35 @@ import {
 } from "recharts/types/component/DefaultTooltipContent";
 
 import { BarGraphicProps } from ".";
-import { useStoreData } from "../../../../../hooks/use-stored-data";
+import { useFinanceStore } from "../../../../../hooks/use-finance-store";
 import { useThemeStore } from "../../../../../components/toggle-theme";
 
 export const BarGraphic = (props: BarGraphicProps) => {
   const { filter } = props;
 
-  const financeData = useStoreData();
+  const financeData = useFinanceStore((state) => state.financeData);
   const isDark = useThemeStore((state) => state.isDark);
 
-  const filteredData = financeData.filter((item) => item.type === filter);
+  const filteredData = financeData.filter((item) => {
+    if (filter === "todos") return true;
+    return item.type === filter;
+  });
 
-  const chartData = filteredData.map((item) => ({
-    category: item.category,
-    value: Number(item.value),
-    type: item.type,
-  }));
+  const chartData = filteredData.reduce((acc, item) => {
+    const existingCategory = acc.find(
+      (entry) => entry.category === item.category
+    );
+    if (existingCategory) {
+      existingCategory.value += Number(item.value);
+    } else {
+      acc.push({
+        category: item.category,
+        value: Number(item.value),
+        type: item.type,
+      });
+    }
+    return acc;
+  }, [] as { category: string; value: number; type: string }[]);
 
   const barColor = isDark ? "#9333ea" : "#f97316";
   const axisColor = isDark ? "#fff" : "#000";
@@ -39,7 +52,11 @@ export const BarGraphic = (props: BarGraphicProps) => {
   return (
     <div className="flex flex-col w-full">
       <h2 className="text-lg mb-4">{`Gráfico de ${
-        filter === "receita" ? "Receitas" : "Despesas"
+        filter === "receita"
+          ? "Receitas"
+          : filter === "despesa"
+          ? "Despesas"
+          : "Receitas e Despesas"
       }`}</h2>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData}>

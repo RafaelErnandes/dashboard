@@ -11,7 +11,9 @@ import { PizzaGraphic } from "./components/graphics/pizza-graphic/index.tsx";
 import { useDashboardMeta } from "./hooks/useDashboardMeta.ts";
 
 export const DashboardPage = () => {
-  const [filter, setFilter] = useState<"receita" | "despesa">("receita");
+  const [filter, setFilter] = useState<"receita" | "despesa" | "todos">(
+    "todos"
+  );
 
   const metasRef = useRef<HTMLDivElement>(null);
   const {
