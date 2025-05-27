@@ -17,7 +17,7 @@ export const FormFields = (props: FormFieldProps) => {
 
   return (
     <>
-      <FormSelectType register={register} error={errors.type?.message} />
+      <FormSelectType register={register} error={errors.type} />
 
       <div className="flex gap-4">
         <div className="w-full">
@@ -61,7 +61,7 @@ export const FormFields = (props: FormFieldProps) => {
           {...register("description", {
             required: "Descrição é obrigatório",
           })}
-          error={errors.description?.message}
+          error={errors.description}
         />
       </div>
 
@@ -72,7 +72,7 @@ export const FormFields = (props: FormFieldProps) => {
         <FormSelectCategories
           selectedType={selectedType}
           register={register}
-          error={errors.category?.message}
+          error={errors.category}
         />
       </div>
     </>

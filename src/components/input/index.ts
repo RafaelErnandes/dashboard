@@ -1,3 +1,5 @@
+import { FieldError } from "react-hook-form";
+
 export type InputProps = {
   placeholder?: string;
   type: string;
@@ -5,6 +7,6 @@ export type InputProps = {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   ref?: React.Ref<HTMLInputElement>;
   step?: number;
-  error?: string;
+  error?: FieldError;
   value?: number | string;
 };

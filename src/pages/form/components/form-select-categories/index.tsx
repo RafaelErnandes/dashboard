@@ -31,7 +31,7 @@ export const FormSelectCategories = (props: FormCategoriesProps) => {
           </>
         )}
       </select>
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <p className="text-red-500 text-sm">{error.message}</p>}
     </>
   );
 };

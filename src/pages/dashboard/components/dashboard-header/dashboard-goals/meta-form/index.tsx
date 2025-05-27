@@ -43,7 +43,7 @@ export const MetaForm = (props: MetaFormProps) => {
             type="text"
             {...register("nome", { required: "O nome da meta é obrigatório" })}
             placeholder="Nome da meta"
-            error={errors.nome?.message}
+            error={errors.nome}
           />
         </div>
         <div>
@@ -55,7 +55,7 @@ export const MetaForm = (props: MetaFormProps) => {
                 parseFloat(value) > 0 || "O valor deve ser maior que zero",
             })}
             placeholder="Valor da meta"
-            error={errors.valorMeta?.message}
+            error={errors.valorMeta}
           />
         </div>
       </form>
