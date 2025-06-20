@@ -2,7 +2,9 @@ import { ErrorMessage } from "../error-message/index.tsx";
 import { InputProps } from "./index";
 
 export const Input = (props: InputProps) => {
-  const { placeholder, type, ref, step, error, value, ...rest } = props;
+  const { placeholder, type, ref, step, error, value, onFocus, ...rest } =
+    props;
+
   return (
     <>
       <input
@@ -12,6 +14,7 @@ export const Input = (props: InputProps) => {
         step={step}
         placeholder={placeholder}
         value={value}
+        onFocus={onFocus}
         {...rest}
       />
       {error && <ErrorMessage error={error} />}

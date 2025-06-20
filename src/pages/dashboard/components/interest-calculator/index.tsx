@@ -9,6 +9,8 @@ export const CalculadoraJuros = () => {
     register,
     formState: { errors },
     control,
+    watch,
+    setValue,
   } = useForm<FormJuros>({
     defaultValues: {
       valorInicial: 0,
@@ -16,6 +18,10 @@ export const CalculadoraJuros = () => {
       periodos: 0,
     },
   });
+
+  const initialValue = watch("valorInicial");
+  const rateInterest = watch("taxaJuros");
+  const periods = watch("periodos");
 
   const [valorInicial = 0, taxaJuros = 0, periodos = 0] = useWatch({
     control,
@@ -58,34 +64,65 @@ export const CalculadoraJuros = () => {
 
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div>
-            <label className="block mb-1 text-sm dark:text-slate-100">
+            <span className="block mb-1 text-sm dark:text-slate-100">
               Valor Inicial (R$)
-            </label>
+            </span>
             <Input
               type="number"
               {...register("valorInicial", { valueAsNumber: true })}
+              value={valorInicial}
+              onFocus={() => {
+                if (initialValue === 0) {
+                  setValue("valorInicial", NaN);
+                }
+              }}
+              onBlur={() => {
+                if (isNaN(valorInicial)) {
+                  setValue("valorInicial", 0);
+                }
+              }}
             />
             {errors.valorInicial && (
               <ErrorMessage error={errors.valorInicial} />
             )}
           </div>
           <div>
-            <label className="block mb-1 text-sm dark:text-slate-100">
+            <span className="block mb-1 text-sm dark:text-slate-100">
               Taxa de Juros (%)
-            </label>
+            </span>
             <Input
               type="number"
               {...register("taxaJuros", { valueAsNumber: true })}
+              onFocus={() => {
+                if (rateInterest === 0) {
+                  setValue("taxaJuros", NaN);
+                }
+              }}
+              onBlur={() => {
+                if (isNaN(rateInterest)) {
+                  setValue("taxaJuros", 0);
+                }
+              }}
             />
             {errors.taxaJuros && <ErrorMessage error={errors.taxaJuros} />}
           </div>
           <div>
-            <label className="block mb-1 text-sm dark:text-slate-100">
+            <span className="block mb-1 text-sm dark:text-slate-100">
               Períodos (meses)
-            </label>
+            </span>
             <Input
               type="number"
               {...register("periodos", { valueAsNumber: true })}
+              onFocus={() => {
+                if (periods === 0) {
+                  setValue("periodos", NaN);
+                }
+              }}
+              onBlur={() => {
+                if (isNaN(periods)) {
+                  setValue("periodos", 0);
+                }
+              }}
             />
             {errors.periodos && <ErrorMessage error={errors.periodos} />}
           </div>

@@ -1,4 +1,5 @@
 import { FieldError } from "react-hook-form";
+import { FocusEventHandler } from "react";
 
 export type InputProps = {
   placeholder?: string;
@@ -9,4 +10,5 @@ export type InputProps = {
   step?: number;
   error?: FieldError;
   value?: number | string;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
