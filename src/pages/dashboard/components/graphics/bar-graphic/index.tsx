@@ -58,16 +58,22 @@ export const BarGraphic = (props: BarGraphicProps) => {
           ? "Despesas"
           : "Receitas e Despesas"
       }`}</h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
-          <XAxis dataKey="category" stroke={axisColor} />
-          <YAxis stroke={axisColor} />
-          <Tooltip content={<CustomBarGraphicTooltip />} />
-          <Legend />
-          <Bar dataKey="value" name="Valor" fill={barColor} />
-        </BarChart>
-      </ResponsiveContainer>
+      {chartData.length === 0 ? (
+        <div className="text-center text-gray-600 dark:text-gray-300 text-lg py-20">
+          Nenhum dado disponível para exibir o gráfico.
+        </div>
+      ) : (
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+            <XAxis dataKey="category" stroke={axisColor} />
+            <YAxis stroke={axisColor} />
+            <Tooltip content={<CustomBarGraphicTooltip />} />
+            <Legend />
+            <Bar dataKey="value" name="Valor" fill={barColor} />
+          </BarChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 };

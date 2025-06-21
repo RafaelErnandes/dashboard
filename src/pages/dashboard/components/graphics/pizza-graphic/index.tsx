@@ -29,28 +29,38 @@ export const PizzaGraphic = () => {
 
   const COLORS = isDark ? ["#2563EB", "#9333EA"] : ["#a855f7", "#f97316"];
 
+  const hasData = totalReceitas > 0 || totalDespesas > 0;
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={({ name, percent }) =>
-            `${name} ${(percent * 100).toFixed(0)}%`
-          }
-          outerRadius={80}
-          dataKey="value"
-        >
-          {data.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index]} />
-          ))}
-        </Pie>
-        <Tooltip content={CustomPizzaGraphicTooltip} />
-        <Legend />
-      </PieChart>
-    </ResponsiveContainer>
+    <div className="w-full h-full">
+      {hasData ? (
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={({ name, percent }) =>
+                `${name} ${(percent * 100).toFixed(0)}%`
+              }
+              outerRadius={80}
+              dataKey="value"
+            >
+              {data.map((_, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+              ))}
+            </Pie>
+            <Tooltip content={CustomPizzaGraphicTooltip} />
+            <Legend />
+          </PieChart>
+        </ResponsiveContainer>
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-gray-600 dark:text-gray-300 text-lg">
+          Nenhum dado disponível para o gráfico de pizza.
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -35,15 +35,21 @@ export const LineGraphic = () => {
       <h2 className="text-lg mb-4">
         Gráfico de Evolução de Despesas e Receitas
       </h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
-          <XAxis dataKey="date" stroke={axisColor} />
-          <YAxis stroke={axisColor} />
-          <Tooltip content={CustomLineGraphicTooltip} />
-          <Line type="monotone" dataKey="value" stroke={lineColor} />
-        </LineChart>
-      </ResponsiveContainer>
+      {chartData.length === 0 ? (
+        <div className="text-center text-gray-600 dark:text-gray-300 text-lg py-20">
+          Nenhum dado disponível para exibir o gráfico.
+        </div>
+      ) : (
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+            <XAxis dataKey="date" stroke={axisColor} />
+            <YAxis stroke={axisColor} />
+            <Tooltip content={CustomLineGraphicTooltip} />
+            <Line type="monotone" dataKey="value" stroke={lineColor} />
+          </LineChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 };

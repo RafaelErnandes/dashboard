@@ -2,9 +2,15 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { FormBody } from "./components/form-content/form-body/index.tsx";
 import { ToggleTheme } from "../../components/toggle-theme/index.tsx";
-import imageTeste from "../../images/imgTeste.png";
+import bannerImg from "../../images/bannerImg.jpg";
+import { useNavigate } from "react-router-dom";
 
 export const Form = () => {
+  const navigate = useNavigate();
+
+  const handleGoToDashboard = () => {
+    navigate("/dashboard");
+  };
   return (
     <div className="flex h-screen">
       <div className="w-1/3 bg-gray-100 dark:bg-zinc-900 flex items-center px-8">
@@ -21,12 +27,18 @@ export const Form = () => {
             </span>
           </div>
           <FormBody />
+          <button
+            onClick={handleGoToDashboard}
+            className="mt-4 py-2 px-4 button-base"
+          >
+            Ir para Dashboard
+          </button>
         </div>
       </div>
 
       <div className="w-2/3 bg-gray-200 dark:bg-zinc-800 lg:">
         <img
-          src={imageTeste}
+          src={bannerImg}
           alt="Imagem meramente ilustrativa do dashboard"
           className="w-full h-full object-cover"
         />
